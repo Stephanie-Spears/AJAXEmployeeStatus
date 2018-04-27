@@ -45,3 +45,22 @@ xhrRoomRequest.onreadystatechange = function () {
   }
 };
 xhrRoomRequest.send();
+
+//
+// function sendAJAX(){
+//   let bathrooms = JSON.parse("data/bathrooms.json");
+//   for (let i=0; i<bathrooms.length; i++) {
+//     if (bathrooms[i].available === true) {
+//       statusHTML += '<li class="empty">';
+//     } else {
+//       statusHTML += '<li class="full">';
+//     }
+//     statusHTML += bathrooms[i].bathroom;
+//     statusHTML += '</li>';
+//   }
+//   statusHTML += '</ul>';
+//   $('#ajax').load('data/bathrooms.json');
+//   $('#load').show();
+// }
+
+// var parsedJson = $.parseJSON(jsonToBeParsed);

@@ -5,7 +5,16 @@
     <title>AJAX Office Status Widget</title>
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/main.css">
+    <script src="http://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+            crossorigin="anonymous"></script>
     <script src="js/widget.js"></script>
+<!--<script>-->
+  <!--function sendAJAX(){-->
+    <!--$('#ajax').load('data/bathrooms.json').parse;-->
+    <!--$('#load').hide();-->
+  <!--}</script>-->
+
 </head>
 <body>
 <div class="grid-container centered">
@@ -27,6 +36,10 @@
                 <h2>Employee Office Status</h2>
                 <div id="employeeList">
                 </div>
+                <!--<h2>Bathrooms</h2>-->
+                <!--<button id="load" onclick="sendAJAX()" class="button">Push Me</button>-->
+                <!--<div id="ajax" >-->
+                <!--</div>-->
             </aside>
             <footer class="grid-100">
                 <p>Copyright, The Intranet Corporation</p>

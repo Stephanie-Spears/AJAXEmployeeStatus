@@ -1,0 +1,26 @@
+[
+  {
+    "bathroom": "A",
+    "available": true
+  },
+  {
+    "bathroom": "B",
+    "available": false
+  },
+  {
+    "bathroom": "C",
+    "available": false
+  },
+  {
+    "bathroom": "D",
+    "available": true
+  },
+  {
+    "bathroom": "E",
+    "available": true
+  },
+  {
+    "bathroom": "F",
+    "available": true
+  }
+]
