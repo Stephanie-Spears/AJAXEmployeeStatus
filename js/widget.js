@@ -17,7 +17,31 @@ xhr.onreadystatechange = function () {
     }
     statusHTML += '</ul>';
     document.getElementById('employeeList').innerHTML = statusHTML;
-    console.log(employees);
   }
 };
 xhr.send();
+
+
+
+const xhrRoomRequest = new XMLHttpRequest();
+
+xhrRoomRequest.open('GET', 'data/rooms.json');
+
+xhrRoomRequest.onreadystatechange = function () {
+  if(xhrRoomRequest.readyState === 4 && xhrRoomRequest.status === 200) {
+    let rooms = JSON.parse(xhrRoomRequest.responseText);
+    let statusHTML = '<ul class="rooms">';
+    for (let i=0; i<rooms.length; i++) {
+      if (rooms[i].available === true) {
+        statusHTML += '<li class="empty">';
+      } else {
+        statusHTML += '<li class="full">';
+      }
+      statusHTML += rooms[i].room;
+      statusHTML += '</li>';
+    }
+    statusHTML += '</ul>';
+    document.getElementById('roomList').innerHTML = statusHTML;
+  }
+};
+xhrRoomRequest.send();
