@@ -1,6 +1,6 @@
 const xhr = new XMLHttpRequest();
 
-// xhr.open('GET', '../data/employees.json');
+xhr.open('GET', 'data/employees.json');
 
 xhr.onreadystatechange = function () {
   if(xhr.readyState === 4 && xhr.status === 200) {
@@ -17,6 +17,7 @@ xhr.onreadystatechange = function () {
     }
     statusHTML += '</ul>';
     document.getElementById('employeeList').innerHTML = statusHTML;
+    console.log(employees);
   }
 };
 xhr.send();
