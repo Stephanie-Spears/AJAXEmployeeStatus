@@ -1,0 +1,329 @@
+client-side scripting: done in user browser (javascript)
+server-side scripting: done in web server (asp.net, node.js, php) - this is usually for security purposes, because it allows the source code to be hidden on the server
+
+Relational DB: used for transaction-oriented applications (SQL, MySQL)
+Non-Relational DB: used for Document stores, Column stores (MongoDB, Redis)
+
+push - add nw item to end
+unshift - add new item to beginning
+pop - remove and return last item
+shift - remove first item 
+
+CONST -> prevent reassignment, block level scope. You can assign additional properties to const variables.
+const temp1 = 1;
+temp1  = 2 //error thrown here.
+temp1.temp = 3 // no error, valid
+
+const days = ['Monday', 'Tuesday']
+days.push('Wednesday', 'Thursday');
+//
+const names = []
+names[0] = 'Stephanie';
+names[1] = 'Max';
+//
+const items = ['eggs', 'milk', 'coffee'];
+items.pop();
+
+
+LET -- subs for var(which is not recommended now), especically in use of dynamic vars
+for (let i - 0; i < buttons.length; i++){...}
+let allows you to declare variables that are limited in scope to the block, statement, or expression on which it is used. This is unlike the var keyword, which defines a variable globally, or locally to an entire function regardless of block scope.
+
+
+TEMPLATE LITERAL
+using the backtick ` for string turns it into a template literal string, which is good for multi-line strings
+
+const fruitList = 
+	"<ul>" +
+	"<li>Kiwi</li>" +
+	"</ul>";
+//VS
+const fruitList = `
+	<ul>
+	<li>Kiwi</li>
+	</ul>
+	`;
+document.querySelector('.fruits').innerHTML = fruitList; //puts multiline string into a div with the class 'fruits'
+
+//Template Literals can also evaluate any javascript expression
+function love(thing){
+	return `I love ${thing};
+}
+const sentence = `<p class="interpolation"> ${love("buttstuff")} and also ${love("more buttstuff")}</p>`;
+document.querySelector('.interpolation').innerHTML = sentence;
+//OR
+const cost = 8;
+const units = 100;
+let total = `Total cost is ${cost * units}`;
+console.log(total); // 'Total cost is 800.'
+
+
+
+ARROW FUNCTIONS
+Benefits: shorter syntax, ability to use callbacks with keyword 'this'.
+
+function Person(){ //increment age every second
+	this.age = 0;
+	setInterval(() => {
+		this.age ++;
+	}, 1000;
+}
+
+You don't need the {} or the return keyword if the arrow function is on a single line:
+const getYear = function () {
+	return new Date().getFullYear();
+};
+//Same as:
+const getYear = () => new Date().getFullYear();
+//
+
+//Function Declaration
+function divide1(a, b) {
+  return a / b; 
+}
+
+//Function Expression
+const divide2 = function(a, b) {
+  return a / b;
+}
+
+//Arrow Function Expression
+const divide3 = (a, b) => {
+  return a / b;
+}
+
+//Arrow Function Expression - concise
+const divide4 = (a, b) => a / b;
+
+document.getElementById('myId'); //same as document.querySelector('#myId');
+document.querySelector("#button li") //returns first >> will match class/id/tag, etc.
+document.querySelectorAll(".classname li") //returns all
+document.querySelector('[title=MyTitle']); //returns title attribute set to MyTitle
+
+
+1.nodeValue is a little more confusing to use, but faster than innerHTML.
+2.innerHTML parses content as HTML and takes longer.
+3.textContent uses straight text, does not parse HTML, and is faster.
+4.innerText Takes styles into consideration. It won't get hidden text for instance.
+
+Attributes, like the href attribute on a link, or the action attribute on a form, exist as properties of an element object. 
+
+var insertedNode = parentNode.insertBefore(newNode, referenceNode);
+
+jQuery is a JavaScript Library-->provides a collection of convenience methods 
+jQuery animation functions-->fadeIn(2000), fadeOut(), delay(), slideDown(), slideUp(), hide(), show() 
+$("#flashMessage").hide().slideDown(1000).delay(3000).slideUp();
+$(".aclass").text("some text");
+$("#anID").html("<a>some html</a>");
+$("#previewButon).click(function(){
+	const title = $("#blogTitleInput").val();
+	$(".aclass").text(title);
+
+});
+
+particles.js -> lightweight javascript library for creating particles
+
+
+UNOBTRUSIVE JAVASCRIPT
+1. Separation of Concerns--> JS as funcitonal layer should be kept separate from the HTML(structural)/CSS(presentational) layers
+2. Cross browser consistency
+3. Progressive Enhancement (website's functionality should be present even when js is blocked)
+
+
+const $button = $('<button>'Reveal Spoiler</button>');
+$('spoiler').append($button); //prepend too
+
+
+EVENT HANDLING:
+.click()
+.mouseover()
+.keypress()
+.focus()
+.on('click mouseleave', function(){ // }); //THE ON METHOD ALLOWS YOU TO ASSIGN AN EVENT HANDLER TO MORE THAN ONE EVENT
+
+$('.spoiler').on('click', 'button', function(){ // }); // if click on button element
+
+$('.spoiler').on('click', 'button', function(event){ //event delegation
+	console.log(event.target);
+	$(event.target).hide(); //instead of event.target, can change to $(this).hide();
+
+CALLBACK:
+A callback function, also known as a higher-order function, is a function that is passed to another function (let's call this other function “otherFunction”) as a parameter, and the callback function is called (or executed) inside the otherFunction.
+
+EVENT OBJECT:
+Each time an event listener is triggered on a webpage, we receive a bundle of useful information such as the type of event that occurred and the element that triggered the event. 
+
+Attribute Starts With Selector [name^=”value”]
+Attribute Ends With Selector [name$=”value”]
+PESUDO-SELECTORS: $("li:hidden").show();
+
+$('#my-img').attr("alt") //GETTER
+$('#my-img').attr("alt", "Sunset in Barcelona") //SETTER
+
+EACH FUNCTION:
+$collection.each(function(index, element){ //do something with each element});
+$('a').each(function(index, link){
+	const url = $(link).attr('href');
+	$(link).parent().append('(${url})');
+}); 
+//same as above, with THIS
+$('a').each(function(this){
+	const url = $(this).attr('href');
+	$(this).parent().append('(${url})');
+});
+ 
+CSS
+$(element).css('fontSize', '1.5em');
+
+PREVENTDEFAULT:
+preventDefault() --> stop link from automatically followed when clicked, to prevent page from reloading on form submission
+
+AJAX:
+AJAX is a front-end web technology that lets JavaScript communicate with a web server. 
+It allows us to update our webpage without loading a page. EX: request from server a success/fail message, response from server delivered to our page\
+Asynchronous (doesn't impede our site while waiting for a response)
+Javascript
+And
+XML
+
+Servers may take longer to respond to certain AJAX requests, so callbacks run in the order in which the responses return.
+JavaScript Object manage AJAX requests as "XMLHttpRequest Object" -> XHR
+
+AJAX REQUEST:
+1. CREATE XMLHttpRequest Obj
+2. CREATE callback function "like leaving a 'hey call me back when you get this' note"
+3. OPEN request
+4. SEND request
+
+
+//when you click a button, sends a request to load the data to the page
+<script>
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){ //runs anytime a state changes
+		//xhr object has a property called readyState. If it is 4, that means the request is finished and the server has sent back a response
+		if (xhr.readyState === 4){	
+			document.getElementById('ajax').innerHTML = xhr.responseText; //response text is what is sent back	
+		}
+	};
+	xhr.open('GET', 'sidebar.html'); //open request, can be get/post, etc. The url is where the request is going (server or local file, etc.). This gets the browser ready to make a request, but it doesn't SEND that request yet
+	functioN sendAJAX(){
+		xhr.send(); //when we need to submit info to the server, like user form data, we can put that data inside the send method ex: xhr.send(someData)
+		document.getElementById('load').style.display = "none"; //makes button disappear after clicking
+
+}
+</script>
+<button id="load" onclick="sendAJAX()">Click it!</button>
+<div id="ajax"></div>
+
+GET->requesting info/sends data via URL
+POST->sending info to database, sending passwords, sending large amounts of info like forms/sends data via 'body' of request
+
+Web Servers commonly send responses to an AJAX request as:
+1. plain text
+2. HTML
+3. XML
+4. JSON
+
+
+SAME ORIGIN POLICY
+Calling AJAX only works if you're requesting something on the same server. (site: http://steph.com/ajax.html server: http://steph.com/)
+The AJAX request must have the same protocol (http vs https isn't allowed)
+The browser can't let you request data from another port, so switching from the default port of 80 to port 8888 WON'T work
+The host must be the same (www.steph.com vs db.steph.com is a DIFFERENT host, so won't work)
+
+TO ACCESS INFO ON ANOTHER SERVER:
+1. WEB PROXY
+2. JSONP
+3. CORS
+
+If you want to access assets on a different domain, like embedding a google map or add a photo from FB, you have to make a web proxy. This means instead of your site trying to access the data directly, it will instead connect to a server on that domain, and then tell that proxy (inbetween) server to request information from the desired source.
+www.steph.com/ajax.html <-> www.facebook.com/steph.img <-> www.facebook.com
+
+JSONP -> JSON with Padding
+Relies on ability to link JavaScript files across domains. IE. jQuery CDNs, link to photos/CSS/JS files, CDNs for JS Libs like jQuery.
+Using CDNs saves disk space and processing power on your own server
+
+CORS-Cross-Origin Resource Sharing
+
+
+AJAX won't work on local env since it's not connected to a web server
+
+XMLHttpRequest
+onraedystatechange -> defines a function to be called when readyState prop changes
+-
+readyState
+0: request not initialized
+1: server connection established
+2: request recieved
+3: process request
+4: request finished and response is ready
+-
+status : statusText
+200: "OK"
+402: "Forbidden"
+404: "Page not found"
+
+
+JSON
+-Key value pairs {key:value, "name": "Jim"} -> diff from JS beacause double quotes around prop name, also strings require double quotes. Single quotes won't work in JSON
+
+
+/////
+//Fetch API
+////
+Instead of loading external lib like jQuery into project to. make AJAX requests, JS provides a friendlier data-fetching interface native to the browser->Fetch API
+-Easy to use/understand
+-API is completely promise-based
+-Uses cleaner, simpler code
+-Built into the browser
+
+////
+$(document).ready(function(){});
+It waits for all the html in a file to load into a browser before running anything inside it. Only required if you link javascript in the head of the document, before the html. 
+-If you want to skip document.ready, you can insert the script tags at the bottom of the html tag, so everything is loaded already.
+
+$.each(array, functino(index,value){ //jquery for loop
+	console.log(index, value);
+});
+
+
+const url = "http://website.com/posts"; //sign up for newsleter without leaving page, submit data to ajax
+const data = {
+	firstName = "Steph";
+	lastName = "Spears";
+$.post(url, data, callback);
+};
+
+
+$('form').submit(function(evt){
+	evt.preventDefault();
+	var url= $(this).attr("action");
+	var formData = $(this).serialize();
+	$.post(url, formData, function(response){
+		$('#signup').html("<p>Thanks for signing up!</p>");	
+	});
+	});
+});
+
+
+jquery's $.ajax() method must be used instead of the simpler shorthand methods like $.get(), $.getJSON(), or $.post() for things like sending username/password resources that require user authentication. It also allows you to set a timeout to control how long you wait for a server response.
+the $.ajax() method accepts a URL and a JS object containing settings for how the AJAX request is handled. 
+-The object's success property is used to set a callback function that runs when the browser successfully receives a response from the server
+
+$.ajax("sidebar.html", {
+	success: function(response) {
+		$('#sidebar').html(response);
+	}
+});
+
+
+//HANDLING ERRORS
+jQuery's fail method can be attached to any jquery AJAX method except the .load method. 
+simply chain .fail(); to any method
+jQuery's .fail() method won't work when making requests to another site, or when using the .load() method
+
+$.get('missing.html'), function(data){
+	$('#myDiv').html(data);
+	}).fail(function (jqXHR) {
+	alert(jqXHR.status); //will send 404, can also substitute statusText for the error message
+}):

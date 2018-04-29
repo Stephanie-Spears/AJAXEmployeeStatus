@@ -15,16 +15,16 @@ $(document).ready(function () {
     }); // end getJSON
 
     const room_url="data/rooms.json";
-    $.getJSON(room_url, function(response){
+    $.getJSON(room_url, function(data){
         let room_statusHTML = '<ul class="rooms">';
-        $.each(response, function(index, room){
+        $.each(data, function(index, room){
             if(room.available === true){
                 room_statusHTML += '<li class="empty">';
             }
             else{
                 room_statusHTML += '<li class="full">';
             }
-            room_statusHTML += room.name + '</li>';
+            room_statusHTML += room.room + '</li>';
         });
         room_statusHTML += '</ul>';
         $('#roomList').html(room_statusHTML);
