@@ -346,3 +346,13 @@ adding the json callback to the query string allows you to bypass the security r
 
 const flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
 
+
+REPL: pronounced rep-ul, stands for Read-Evaluate-Print-Loop.
+
+
+THIS keyword takes a value in four ways:
+1. in normal function calls
+2. within methods on objects
+3. within an object that has been constructed
+4. a function invoked iwht .call, .apply, or bind
+
