@@ -366,3 +366,98 @@ const ernie = {
         console.log('Woof');
     }
 }
+
+Getters/Setters
+
+Setter -> the name of a property can never be the same as the getter/setter method -> CANT do this: set owner(owner){this.owner = owner)}
+
+set owner(owner){
+    this._owner = owner; //convention dictates we use an underscore to create a backing property with the same name as the method
+}
+
+
+
+
+
+The Module Pattern
+-self executing anonymous function
+
+(function (){
+    function foo(){
+        console.log('foobar');
+    };
+    foo();
+}());
+
+
+or
+
+//reason you might do this is if you are concat'ing multiple files together
+//or if you don't know which file will come first
+//Because in the basic module pattern you'd have to remember to end every module with a semi-colon, which isn't as pretty
+
+!function (){ //can replace ! with +
+    function foo(){
+        console.log('foobar');
+    };
+    foo();
+}();
+
+
+
+
+Popular JS Toolkit to import: underscore
+-we rename the module to reference it in the local scope so the interpreter doesn't have to crawl through the global scope looking for it. Performance is enhanced.
+-We don't have to rename the variable in the parameters, it will have the same local scope if referenced as !function(_){...}(_);
+
+!function(underscore){
+    underscore.someawesomemethod = "Yay!";
+    console.log(underscore.VERSION);
+}(_);
+
+/////
+The point of modular code is to split the app into pieces that don't depend on each other-->that way if a new module is introduced with a breaking error it has no chance of breaking the rest of the code
+
+//inside function(exports) -> these exports values will either get assigned to an empty object (if first file), or they'll get asigned to and extend awesomeNewModule. Any vars/methods with the same name will get overwritten
+
+var awesomeNewModule = (function(exports){
+    var exports = {                 //no global access to variables
+        foo: 5,
+        bar: 10
+    };
+
+    exports.helloMars = function(){
+        console.log('Hello Mars!');
+    };
+
+    exports.goodbyeMars = function(){
+        console.log('Goodbye Mars!');
+    };
+
+    return exports
+
+}(awesomeNewModule || {} )); //says if awesomeNewModule exists, import it, otherwise awesomeNewModule is just an object
+
+
+Sub Module Pattern
+//makes sure one module doesn't override methods or patterns created by another module
+//allows you to namespace your application even further
+//
+
+var awesomeNewModule.sub = (function(exports){
+    var exports = {
+        foo: 5,
+        bar: 10
+    };
+
+    exports.helloMars = function(){
+        console.log('Hello Mars!');
+    };
+
+    exports.goodbyeMars = function(){
+        console.log('Goodbye Mars!');
+    };
+
+    return exports
+
+}(awesomeNewModule.sub || {} ));
