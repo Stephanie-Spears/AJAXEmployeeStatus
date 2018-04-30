@@ -1,0 +1,2 @@
+An application for a company's intranet system which displays meeting room availability, as well as employee in-office/out-of-office status. 
+Technologies include Flickr API, jQuery for simplification of AJAX calls
