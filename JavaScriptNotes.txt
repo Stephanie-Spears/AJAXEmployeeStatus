@@ -356,3 +356,13 @@ THIS keyword takes a value in four ways:
 3. within an object that has been constructed
 4. a function invoked iwht .call, .apply, or bind
 
+Object Literals
+
+const ernie = {
+    animal: 'dog',
+    age: 1,
+    breed: 'pug',
+    bark: function(){
+        console.log('Woof');
+    }
+}
