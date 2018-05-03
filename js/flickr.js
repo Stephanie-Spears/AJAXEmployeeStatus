@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  const flickrAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+  const flickrAPI = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
   $('button').click(function () {
     // highlight the button
     $("button").removeClass("selected");
